@@ -2,6 +2,7 @@
 
 class Agent():
 
+
     def __init__(self, iterable=(), **kwargs):
         super().__init__(iterable, **kwargs)
 

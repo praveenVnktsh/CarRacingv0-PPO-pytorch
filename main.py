@@ -1,10 +1,7 @@
 from agentFile import Agent
-import os 
-import torch 
 import gym
-import re
-import sys
-
+from environment import Environment
+from neuralnet import NeuralNet
 TRAINCONFIG = {
 
     'totalEpisodes': 10000
@@ -18,13 +15,10 @@ AGENTCONFIG = {
     'gamma':0.95, #discount rate
 }
 
-env_name = 'CarRacing-v0'
-env = gym.make(env_name)
-
-agent = Agent(AGENTCONFIG)
 
 
-def playOneEpisode(render = False):
+
+def playOneEpisode(agent, render = False):
     reward, frames = agent.playEpisode(render)
     print('Episode - ', agent.episodeCount, ' Reward - ', reward, 'Frames - ', frames, 'Total Steps = ', agent.steps)
 
@@ -43,11 +37,16 @@ def train():
         else:
             render = False
 
-        playOneEpisode(render)
+        playOneEpisode(agent, render)
 
-    print('Training Complete ------------')    
+    print('--------------Training Complete ------------')    
 
 
 
 if __name__ == "__main__":
-    train()
+
+
+    env_name = 'CarRacing-v0'
+    env = gym.make(env_name)
+    agent = Agent(AGENTCONFIG)
+    train(agent, env)
