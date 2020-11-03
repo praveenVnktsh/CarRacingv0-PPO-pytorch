@@ -1,52 +1,59 @@
 from agentFile import Agent
-import gym
 from environment import Environment
-from neuralnet import NeuralNet
-TRAINCONFIG = {
-
-    'totalEpisodes': 10000
-}
+import numpy as np
 
 
-AGENTCONFIG = {
-    'min_epsilon':0.1,
-    'num_frame_stack':4,
-    'epsion_decay_steps':100000,
-    'gamma':0.95, #discount rate
-}
+def startTraining(agent, env, render = False, logInterval = 1000):
 
+    trainingRecords = []
+    runningScore = 0
 
+    for episodeCount in range(100000):
+        score = 0
+        state = env.reset()
 
+        for t in range(1000):
 
-def playOneEpisode(agent, render = False):
-    reward, frames = agent.playEpisode(render)
-    print('Episode - ', agent.episodeCount, ' Reward - ', reward, 'Frames - ', frames, 'Total Steps = ', agent.steps)
+            action, actionLogP = agent.chooseAction(state)
 
+            state_, reward, done, dead = env.step(action*np.array([2.0, 1.0, 1.0] + np.array([-1.0, 0.0, 0.0])))
+            
 
-def saveCheckpoint():
-    pass
+            if render:
+                env.render()
 
+            if agent.store((state, action, actionLogP, reward, state_ )):
+                print("UPDATING")
+                agent.update()
 
-def train():
+            score += reward
+            state = state_
+            if done or dead:
+                break
+       
+        runningScore = runningScore*0.99 + score*0.01
 
-    while agent.episodeCount < TRAINCONFIG['totalEpisodes']:
-
-        if agent.episodeCount % 100 == 0:
+        render = False
+        if episodeCount % logInterval == 0:
+            print('Ep {}\tLast score: {:.2f}\tMoving average score: {:.2f}'.format(episodeCount, score, runningScore))
+            agent.save_param()
             render = True
-            saveCheckpoint()
-        else:
-            render = False
 
-        playOneEpisode(agent, render)
 
-    print('--------------Training Complete ------------')    
+        
+
+        if runningScore > env.rewardThresh:
+            print("SOLVED MAN!!!!")
+            break
+    
+
 
 
 
 if __name__ == "__main__":
+    agent = Agent()
+    env = Environment()
+
+    startTraining(agent, env)
 
 
-    env_name = 'CarRacing-v0'
-    env = gym.make(env_name)
-    agent = Agent(AGENTCONFIG)
-    train(agent, env)

@@ -6,6 +6,7 @@ class Environment():
     def __init__(self):
         self.env = gym.make('CarRacing-v0')
         self.stackNumber = 4
+        self.rewardThresh = self.env.spec.reward_threshold
 
     def reset(self):
         self.dead = False

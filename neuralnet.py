@@ -2,12 +2,12 @@ import torch.nn as nn
 
 class NeuralNet(nn.Module): #actor critic network 
 
-    def __init__(self, config):
+    def __init__(self, stackNumber = 4):
 
         super(NeuralNet, self).__init__()
 
         self.baseNetwork = nn.Sequential(
-            nn.Conv2d(config['stackNumber'], 8, kernel_size = 4, stride= 2), # stacked frames as input
+            nn.Conv2d(stackNumber, 8, kernel_size = 4, stride= 2), # stacked frames as input
             nn.ReLU(),
             nn.Conv2d(8, 16, kernel_size = 3, stride = 2),
             nn.ReLU(),
@@ -43,7 +43,7 @@ class NeuralNet(nn.Module): #actor critic network
             nn.Softplus(),
         )
     
-        self.apply(self.initializeWeights())
+        self.apply(self.initializeWeights)
 
     def initializeWeights(self, module):
 
@@ -54,10 +54,10 @@ class NeuralNet(nn.Module): #actor critic network
     def forward(self, input):
 
         out = self.baseNetwork(input)
-        out = out.view(-1, 256) #resize inputs for next outputs
+        out = out.view(-1, 256).double() #resize inputs for next outputs
 
-        value = self.valueNetwork(out)
-        alpha = self.alphaNetwork(out) + 1
-        beta = self.alphaNetwork(out) + 1
+        value = self.valueNetwork(out).double()
+        alpha = self.alphaNetwork(out).double() + 1
+        beta = self.alphaNetwork(out).double() + 1
 
         return (alpha, beta), value
