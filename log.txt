@@ -1,0 +1,465 @@
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+Ep 0	Last score: -3.91	Moving average score: -0.04
+ENV RESTARTING
+Ep 0	Last score: -3.91	Moving average score: -0.04
+ENV RESTARTING
+Ep 0	Last score: -3.91	Moving average score: -0.04
+ENV RESTARTING
+Ep 0	Last score: -92.25	Moving average score: -0.96
+ENV RESTARTING
+Ep 0	Last score: -48.52	Moving average score: -1.44
+ENV RESTARTING
+Ep 0	Last score: -25.27	Moving average score: -1.68
+ENV RESTARTING
+Ep 0	Last score: -57.30	Moving average score: -2.23
+ENV RESTARTING
+Ep 0	Last score: -71.53	Moving average score: -2.92
+ENV RESTARTING
+Ep 0	Last score: -50.18	Moving average score: -3.40
+ENV RESTARTING
+Ep 0	Last score: -67.97	Moving average score: -4.04
+ENV RESTARTING
+Ep 0	Last score: -78.65	Moving average score: -4.79
+ENV RESTARTING
+Ep 0	Last score: -42.55	Moving average score: -5.17
+ENV RESTARTING
+Ep 0	Last score: -3.91	Moving average score: -5.15
+ENV RESTARTING
+Ep 0	Last score: -11.03	Moving average score: -5.21
+ENV RESTARTING
+Ep 0	Last score: -92.88	Moving average score: -6.09
+ENV RESTARTING
+Ep 0	Last score: -25.27	Moving average score: -6.28
+ENV RESTARTING
+Ep 0	Last score: -71.53	Moving average score: -6.93
+ENV RESTARTING
+Ep 0	Last score: -93.05	Moving average score: -7.79
+ENV RESTARTING
+Ep 0	Last score: -3.91	Moving average score: -0.04
+Ep 1	Last score: -46.06	Moving average score: -0.50
+Ep 2	Last score: -42.96	Moving average score: -0.92
+Ep 0	Last score: -0.36	Moving average score: -0.00
+Ep 1	Last score: -31.84	Moving average score: -0.32
+Ep 2	Last score: -44.86	Moving average score: -0.77
+Ep 3	Last score: -32.72	Moving average score: -1.09
+Ep 4	Last score: -34.41	Moving average score: -1.42
+Ep 0	Last score: -0.36	Moving average score: -0.00
+Ep 1	Last score: -31.84	Moving average score: -0.32
+Ep 2	Last score: -44.86	Moving average score: -0.77
+Ep 3	Last score: -32.72	Moving average score: -1.09
+Ep 4	Last score: -34.41	Moving average score: -1.42
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+ENV RESTARTING
+Ep 0	Last score: -0.36	Moving average score: -0.00
+Ep 1	Last score: -29.29	Moving average score: -0.30
+Ep 0	Last score: -0.36	Moving average score: -0.00
+Ep 1	Last score: -29.29	Moving average score: -0.30
+Ep 2	Last score: -75.97	Moving average score: -1.05
+Ep 3	Last score: -61.04	Moving average score: -1.65
+Ep 4	Last score: -32.21	Moving average score: -1.96
+Ep 5	Last score: -44.30	Moving average score: -2.38
+Ep 6	Last score: -52.72	Moving average score: -2.89
+Ep 7	Last score: -16.28	Moving average score: -3.02
+Ep 8	Last score: -41.70	Moving average score: -3.41
+Ep 0	Last score: -533.40	Moving average score: -5.33
+Ep 1	Last score: -658.38	Moving average score: -11.86
+Ep 2	Last score: -807.08	Moving average score: -19.82
+Ep 3	Last score: -726.50	Moving average score: -26.88
+Ep 4	Last score: -820.49	Moving average score: -34.82
+Ep 0	Last score: -53.66	Moving average score: -0.54
+Ep 0	Last score: -53.66	Moving average score: -0.54
+Ep 0	Last score: -53.66	Moving average score: -0.54
+Ep 1	Last score: -94.14	Moving average score: -1.47
+Ep 2	Last score: -130.33	Moving average score: -2.76
+Ep 3	Last score: -126.95	Moving average score: -4.00
+Ep 4	Last score: -103.77	Moving average score: -5.00
+Ep 5	Last score: -110.62	Moving average score: -6.06
+Ep 6	Last score: -121.21	Moving average score: -7.21
+Ep 7	Last score: -109.39	Moving average score: -8.23
+Ep 8	Last score: -124.15	Moving average score: -9.39
+Ep 0	Last score: -42.76	Moving average score: -0.43
+Ep 1	Last score: -96.43	Moving average score: -1.39
+Ep 2	Last score: -111.56	Moving average score: -2.49
+Ep 3	Last score: -102.61	Moving average score: -3.49
+Ep 4	Last score: -97.14	Moving average score: -4.43
+Ep 5	Last score: -110.93	Moving average score: -5.49
+Ep 6	Last score: -99.00	Moving average score: -6.43
+Ep 7	Last score: -18.61	Moving average score: -6.55
+Ep 8	Last score: -100.38	Moving average score: -7.49
+Ep 9	Last score: 9.64	Moving average score: -7.32
+Ep 10	Last score: -96.09	Moving average score: -8.20
+Ep 11	Last score: -85.45	Moving average score: -8.98
+Ep 12	Last score: -76.28	Moving average score: -9.65
+Ep 13	Last score: -80.69	Moving average score: -10.36
+Ep 14	Last score: -47.40	Moving average score: -10.73
+Ep 15	Last score: -35.09	Moving average score: -10.97
+Ep 16	Last score: -81.95	Moving average score: -11.68
+ENV RESTARTING
+Ep 0	Last score: 6.76	Moving average score: 0.07
+Ep 1	Last score: 999.80	Moving average score: 10.06
+Ep 2	Last score: 999.80	Moving average score: 19.96
+Ep 3	Last score: 999.80	Moving average score: 29.76
+Ep 4	Last score: 999.80	Moving average score: 39.46
+Ep 5	Last score: 999.80	Moving average score: 49.06
+Ep 6	Last score: 999.80	Moving average score: 58.57
+Ep 7	Last score: 999.80	Moving average score: 67.98
+Ep 8	Last score: 999.80	Moving average score: 77.30
+Ep 9	Last score: 999.80	Moving average score: 86.53
+Ep 10	Last score: 999.80	Moving average score: 95.66
+Ep 11	Last score: 999.80	Moving average score: 104.70
+Ep 12	Last score: 999.80	Moving average score: 113.65
+Ep 13	Last score: 999.80	Moving average score: 122.51
+Ep 14	Last score: 999.80	Moving average score: 131.29
+Ep 15	Last score: 999.80	Moving average score: 139.97
+Ep 16	Last score: 999.80	Moving average score: 148.57
+Ep 17	Last score: 999.80	Moving average score: 157.08
+Ep 18	Last score: 999.80	Moving average score: 165.51
+Ep 19	Last score: 999.80	Moving average score: 173.85
+Ep 20	Last score: 999.80	Moving average score: 182.11
+Ep 21	Last score: 999.80	Moving average score: 190.29
+Ep 22	Last score: 999.80	Moving average score: 198.38
+Ep 23	Last score: 999.80	Moving average score: 206.40
+Ep 24	Last score: 999.80	Moving average score: 214.33
+Ep 25	Last score: 999.80	Moving average score: 222.19
+Ep 26	Last score: 999.80	Moving average score: 229.96
+Ep 27	Last score: 999.80	Moving average score: 237.66
+Ep 28	Last score: 999.80	Moving average score: 245.28
+Ep 0	Last score: -92.88	Moving average score: -0.93
+Ep 1	Last score: 999.80	Moving average score: 9.08
+Ep 2	Last score: 999.80	Moving average score: 18.99
+Ep 3	Last score: 999.80	Moving average score: 28.79
+Ep 4	Last score: 999.80	Moving average score: 38.50
+Ep 5	Last score: 999.80	Moving average score: 48.12
+Ep 6	Last score: 999.80	Moving average score: 57.63
+Ep 7	Last score: 999.80	Moving average score: 67.06
+Ep 8	Last score: 999.80	Moving average score: 76.38
+Ep 9	Last score: 999.80	Moving average score: 85.62
+Ep 10	Last score: 999.80	Moving average score: 94.76
+Ep 11	Last score: 999.80	Moving average score: 103.81
+Ep 0	Last score: -3.91	Moving average score: -0.04
+Ep 1	Last score: 999.80	Moving average score: 9.96
+Ep 2	Last score: 999.80	Moving average score: 19.86
+Ep 3	Last score: 999.80	Moving average score: 29.66
+Ep 4	Last score: 999.80	Moving average score: 39.36
+Ep 5	Last score: 999.80	Moving average score: 48.96
+Ep 6	Last score: 999.80	Moving average score: 58.47
+Ep 7	Last score: 999.80	Moving average score: 67.88
+Ep 8	Last score: 999.80	Moving average score: 77.20
+Ep 9	Last score: 999.80	Moving average score: 86.43
+Ep 10	Last score: 999.80	Moving average score: 95.56
+Ep 11	Last score: 999.80	Moving average score: 104.61
+Ep 12	Last score: 999.80	Moving average score: 113.56
+Ep 13	Last score: 999.80	Moving average score: 122.42
+Ep 14	Last score: 999.80	Moving average score: 131.19
+Ep 15	Last score: 999.80	Moving average score: 139.88
+Ep 16	Last score: 999.80	Moving average score: 148.48
+Ep 0	Last score: 3.20	Moving average score: 0.03
+Ep 1	Last score: 999.80	Moving average score: 10.03
+Ep 2	Last score: 999.80	Moving average score: 19.93
+Ep 3	Last score: 999.80	Moving average score: 29.73
+Ep 4	Last score: 999.80	Moving average score: 39.43
+Ep 5	Last score: 999.80	Moving average score: 49.03
+Ep 6	Last score: 999.80	Moving average score: 58.54
+Ep 7	Last score: 999.80	Moving average score: 67.95
+Ep 8	Last score: 999.80	Moving average score: 77.27
+Ep 9	Last score: 999.80	Moving average score: 86.49
+Ep 10	Last score: 999.80	Moving average score: 95.63
+Ep 11	Last score: 999.80	Moving average score: 104.67
+Ep 12	Last score: 999.80	Moving average score: 113.62
+Ep 0	Last score: -92.88	Moving average score: -0.93
+Ep 1	Last score: 999.80	Moving average score: 9.08
+Ep 2	Last score: 999.80	Moving average score: 18.99
+Ep 3	Last score: 999.80	Moving average score: 28.79
+Ep 4	Last score: 999.80	Moving average score: 38.50
+Ep 5	Last score: 999.80	Moving average score: 48.12
+Ep 6	Last score: 999.80	Moving average score: 57.63
+Ep 0	Last score: -0.36	Moving average score: -0.00
+Ep 1	Last score: 999.80	Moving average score: 9.99
+Ep 2	Last score: 999.80	Moving average score: 19.89
+Ep 3	Last score: 999.80	Moving average score: 29.69
+Ep 4	Last score: 999.80	Moving average score: 39.39
+Ep 5	Last score: 999.80	Moving average score: 49.00
+Ep 6	Last score: 999.80	Moving average score: 58.50
+Ep 7	Last score: 999.80	Moving average score: 67.92
+Ep 8	Last score: 999.80	Moving average score: 77.24
+Ep 9	Last score: 999.80	Moving average score: 86.46
+Ep 10	Last score: 999.80	Moving average score: 95.60
+Ep 11	Last score: 999.80	Moving average score: 104.64
+Ep 12	Last score: 999.80	Moving average score: 113.59
+Ep 13	Last score: 999.80	Moving average score: 122.45
+Ep 14	Last score: 999.80	Moving average score: 131.22
+Ep 15	Last score: 999.80	Moving average score: 139.91
+Ep 16	Last score: 999.80	Moving average score: 148.51
+Ep 17	Last score: 999.80	Moving average score: 157.02
+Ep 18	Last score: 999.80	Moving average score: 165.45
+Ep 19	Last score: 999.80	Moving average score: 173.79
+Ep 20	Last score: 999.80	Moving average score: 182.05
+Ep 21	Last score: 999.80	Moving average score: 190.23
+Ep 22	Last score: 999.80	Moving average score: 198.33
+Ep 23	Last score: 999.80	Moving average score: 206.34
+Ep 24	Last score: 999.80	Moving average score: 214.28
+Ep 25	Last score: 999.80	Moving average score: 222.13
+Ep 26	Last score: 999.80	Moving average score: 229.91
+Ep 27	Last score: 999.80	Moving average score: 237.61
+Ep 28	Last score: 999.80	Moving average score: 245.23
+Ep 29	Last score: 999.80	Moving average score: 252.77
+Ep 30	Last score: 999.80	Moving average score: 260.24
+Ep 31	Last score: 999.80	Moving average score: 267.64
+Ep 32	Last score: 999.80	Moving average score: 274.96
+Ep 33	Last score: 999.80	Moving average score: 282.21
+Ep 34	Last score: 999.80	Moving average score: 289.39
+Ep 35	Last score: 999.80	Moving average score: 296.49
+Ep 36	Last score: 999.80	Moving average score: 303.52
+Ep 37	Last score: 999.80	Moving average score: 310.49
+Ep 0	Last score: -0.36	Moving average score: -0.00
+Ep 1	Last score: 999.80	Moving average score: 9.99
+Ep 2	Last score: 999.80	Moving average score: 19.89
+Ep 3	Last score: 999.80	Moving average score: 29.69
+Ep 4	Last score: 999.80	Moving average score: 39.39
+Ep 5	Last score: 999.80	Moving average score: 49.00
+Ep 6	Last score: 999.80	Moving average score: 58.50
+Ep 7	Last score: 999.80	Moving average score: 67.92
+Ep 8	Last score: 999.80	Moving average score: 77.24
+Ep 9	Last score: 999.80	Moving average score: 86.46
+Ep 0	Last score: -3.91	Moving average score: -0.04
+Ep 1	Last score: 999.80	Moving average score: 9.96
+Ep 2	Last score: 999.80	Moving average score: 19.86
+Ep 3	Last score: 999.80	Moving average score: 29.66
+Ep 4	Last score: 999.80	Moving average score: 39.36
+Ep 5	Last score: 999.80	Moving average score: 48.96
+Ep 6	Last score: 999.80	Moving average score: 58.47
+Ep 7	Last score: 999.80	Moving average score: 67.88
+Ep 8	Last score: 999.80	Moving average score: 77.20
+Ep 9	Last score: 999.80	Moving average score: 86.43
+Ep 10	Last score: 999.80	Moving average score: 95.56
+Ep 11	Last score: 999.80	Moving average score: 104.61
+Ep 12	Last score: 999.80	Moving average score: 113.56
+Ep 13	Last score: 999.80	Moving average score: 122.42
+Ep 0	Last score: -3.91	Moving average score: -0.04
+Ep 1	Last score: 999.80	Moving average score: 9.96
+Ep 2	Last score: 999.80	Moving average score: 19.86
+Ep 3	Last score: 999.80	Moving average score: 29.66
+Ep 4	Last score: 999.80	Moving average score: 39.36
+Ep 5	Last score: 999.80	Moving average score: 48.96
+Ep 6	Last score: 999.80	Moving average score: 58.47
+Ep 7	Last score: 999.80	Moving average score: 67.88
+Ep 8	Last score: 999.80	Moving average score: 77.20
+Ep 9	Last score: 999.80	Moving average score: 86.43
+Ep 10	Last score: 999.80	Moving average score: 95.56
+Ep 11	Last score: 999.80	Moving average score: 104.61
+Ep 12	Last score: 999.80	Moving average score: 113.56
+Ep 13	Last score: 999.80	Moving average score: 122.42
+Ep 14	Last score: 999.80	Moving average score: 131.19
+Ep 15	Last score: 999.80	Moving average score: 139.88
+Ep 16	Last score: 999.80	Moving average score: 148.48
+Ep 17	Last score: 999.80	Moving average score: 156.99
+Ep 18	Last score: 999.80	Moving average score: 165.42
+Ep 19	Last score: 999.80	Moving average score: 173.76
+Ep 20	Last score: 999.80	Moving average score: 182.02
+Ep 21	Last score: 999.80	Moving average score: 190.20
+Ep 22	Last score: 999.80	Moving average score: 198.30
+Ep 23	Last score: 999.80	Moving average score: 206.31
+Ep 24	Last score: 999.80	Moving average score: 214.25
+Ep 25	Last score: 999.80	Moving average score: 222.10
+Ep 26	Last score: 999.80	Moving average score: 229.88
+Ep 27	Last score: 999.80	Moving average score: 237.58
+Ep 28	Last score: 999.80	Moving average score: 245.20
+Ep 29	Last score: 999.80	Moving average score: 252.75
+Ep 30	Last score: 999.80	Moving average score: 260.22
+Ep 31	Last score: 999.80	Moving average score: 267.61
+Ep 0	Last score: -3.91	Moving average score: -0.04
+Ep 1	Last score: 999.80	Moving average score: 9.96
+Ep 2	Last score: 999.80	Moving average score: 19.86
+Ep 3	Last score: 999.80	Moving average score: 29.66
+Ep 4	Last score: 999.80	Moving average score: 39.36
+Ep 5	Last score: 999.80	Moving average score: 48.96
+Ep 6	Last score: 999.80	Moving average score: 58.47
+Ep 7	Last score: 999.80	Moving average score: 67.88
+Ep 0	Last score: -82.26	Moving average score: -0.82
+Ep 0	Last score: -6.04	Moving average score: -0.06
+Ep 1	Last score: 999.80	Moving average score: 9.94
+Ep 2	Last score: 999.80	Moving average score: 19.84
+Ep 3	Last score: 999.80	Moving average score: 29.64
+Ep 4	Last score: 999.80	Moving average score: 39.34
+Ep 5	Last score: 999.80	Moving average score: 48.94
+Ep 6	Last score: 999.80	Moving average score: 58.45
+Ep 7	Last score: 999.80	Moving average score: 67.86
+Ep 8	Last score: 999.80	Moving average score: 77.18
+Ep 9	Last score: 999.80	Moving average score: 86.41
+Ep 0	Last score: 959.80	Moving average score: 9.60
+Ep 1	Last score: 999.80	Moving average score: 19.50
+Ep 2	Last score: 999.80	Moving average score: 29.30
+Ep 3	Last score: 999.80	Moving average score: 39.01
+Ep 4	Last score: 999.80	Moving average score: 48.62
+Ep 5	Last score: 999.80	Moving average score: 58.13
+Ep 6	Last score: 999.80	Moving average score: 67.54
+Ep 7	Last score: 999.80	Moving average score: 76.87
+Ep 8	Last score: 999.80	Moving average score: 86.10
+Ep 9	Last score: 999.80	Moving average score: 95.23
+Ep 10	Last score: 999.80	Moving average score: 104.28
+Ep 0	Last score: 959.80	Moving average score: 9.60
+Ep 1	Last score: 999.80	Moving average score: 19.50
+Ep 2	Last score: 999.80	Moving average score: 29.30
+Ep 3	Last score: 999.80	Moving average score: 39.01
+Ep 4	Last score: 999.80	Moving average score: 48.62
+Ep 5	Last score: 999.80	Moving average score: 58.13
+Ep 6	Last score: 999.80	Moving average score: 67.54
+Ep 7	Last score: 999.80	Moving average score: 76.87
+Ep 8	Last score: 999.80	Moving average score: 86.10
+Ep 9	Last score: 999.80	Moving average score: 95.23
+Ep 10	Last score: 999.80	Moving average score: 104.28
+Ep 11	Last score: 999.80	Moving average score: 113.23
+Ep 12	Last score: 999.80	Moving average score: 122.10
+Ep 13	Last score: 999.80	Moving average score: 130.88
+Ep 14	Last score: 999.80	Moving average score: 139.57
+Ep 15	Last score: 999.80	Moving average score: 148.17
+Ep 16	Last score: 999.80	Moving average score: 156.68
+Ep 17	Last score: 999.80	Moving average score: 165.12
+Ep 18	Last score: 999.80	Moving average score: 173.46
+Ep 19	Last score: 999.80	Moving average score: 181.73
+Ep 20	Last score: 999.80	Moving average score: 189.91
+Ep 21	Last score: 999.80	Moving average score: 198.01
+Ep 22	Last score: 999.80	Moving average score: 206.02
+Ep 23	Last score: 999.80	Moving average score: 213.96
+Ep 24	Last score: 999.80	Moving average score: 221.82
+Ep 25	Last score: 999.80	Moving average score: 229.60
+Ep 26	Last score: 999.80	Moving average score: 237.30
+Ep 27	Last score: 999.80	Moving average score: 244.93
+Ep 28	Last score: 999.80	Moving average score: 252.48
+Ep 29	Last score: 999.80	Moving average score: 259.95
+Ep 30	Last score: 999.80	Moving average score: 267.35
+Ep 31	Last score: 999.80	Moving average score: 274.67
+Ep 32	Last score: 999.80	Moving average score: 281.92
+Ep 33	Last score: 999.80	Moving average score: 289.10
+Ep 34	Last score: 999.80	Moving average score: 296.21
+Ep 35	Last score: 999.80	Moving average score: 303.24
+Ep 36	Last score: 999.80	Moving average score: 310.21
+Ep 37	Last score: 999.80	Moving average score: 317.11
+Ep 38	Last score: 999.80	Moving average score: 323.93
+Ep 39	Last score: 999.80	Moving average score: 330.69
+Ep 40	Last score: 999.80	Moving average score: 337.38
+Ep 41	Last score: 999.80	Moving average score: 344.01
+Ep 42	Last score: 999.80	Moving average score: 350.56
+Ep 43	Last score: 999.80	Moving average score: 357.06
+Ep 44	Last score: 999.80	Moving average score: 363.48
+Ep 0	Last score: 959.80	Moving average score: 9.60
+Ep 1	Last score: 999.80	Moving average score: 19.50
+Ep 2	Last score: 999.80	Moving average score: 29.30
+Ep 3	Last score: 999.80	Moving average score: 39.01
+Ep 4	Last score: 999.80	Moving average score: 48.62
+Ep 5	Last score: 999.80	Moving average score: 58.13
+Ep 6	Last score: 999.80	Moving average score: 67.54
+Ep 7	Last score: 999.80	Moving average score: 76.87
+Ep 8	Last score: 999.80	Moving average score: 86.10
+Ep 9	Last score: 999.80	Moving average score: 95.23
+Ep 10	Last score: 999.80	Moving average score: 104.28
+Ep 11	Last score: 999.80	Moving average score: 113.23
+Ep 12	Last score: 999.80	Moving average score: 122.10
+Ep 13	Last score: 999.80	Moving average score: 130.88
+Ep 14	Last score: 999.80	Moving average score: 139.57
+Ep 15	Last score: 999.80	Moving average score: 148.17
+Ep 16	Last score: 999.80	Moving average score: 156.68
+Ep 17	Last score: 999.80	Moving average score: 165.12
+Ep 18	Last score: 999.80	Moving average score: 173.46
+Ep 19	Last score: 999.80	Moving average score: 181.73
+Ep 20	Last score: 999.80	Moving average score: 189.91
+Ep 21	Last score: 999.80	Moving average score: 198.01
+Ep 22	Last score: 999.80	Moving average score: 206.02
+Ep 23	Last score: 999.80	Moving average score: 213.96
+Ep 24	Last score: 999.80	Moving average score: 221.82
+Ep 25	Last score: 999.80	Moving average score: 229.60
+Ep 26	Last score: 999.80	Moving average score: 237.30
+Ep 27	Last score: 999.80	Moving average score: 244.93
+Ep 28	Last score: 999.80	Moving average score: 252.48
+Ep 29	Last score: 999.80	Moving average score: 259.95
+Ep 0	Last score: -83.27	Moving average score: -0.83
+Ep 0	Last score: -83.27	Moving average score: -0.83
+Ep 1	Last score: -82.26	Moving average score: -1.65
+Ep 0	Last score: -83.27	Moving average score: -0.83
+Ep 10	Last score: 959.65	Moving average score: 9.60
+Ep 11	Last score: 999.80	Moving average score: 19.50
+Ep 12	Last score: 999.80	Moving average score: 29.30
+Ep 13	Last score: 999.80	Moving average score: 39.01
+Ep 14	Last score: 999.80	Moving average score: 48.61
+Ep 15	Last score: 999.80	Moving average score: 58.13
+Ep 16	Last score: 999.80	Moving average score: 67.54
+Ep 17	Last score: 999.80	Moving average score: 76.87
+Ep 18	Last score: 999.80	Moving average score: 86.09
+Ep 19	Last score: 999.80	Moving average score: 95.23
+Ep 20	Last score: 999.80	Moving average score: 104.28
+Ep 21	Last score: 999.80	Moving average score: 113.23
+Ep 22	Last score: 999.80	Moving average score: 122.10
+Ep 23	Last score: 999.80	Moving average score: 130.88
+Ep 24	Last score: 999.80	Moving average score: 139.56
+Ep 25	Last score: 999.80	Moving average score: 148.17
+Ep 26	Last score: 999.80	Moving average score: 156.68
+Ep 27	Last score: 999.80	Moving average score: 165.11
+Ep 28	Last score: 999.80	Moving average score: 173.46
+Ep 29	Last score: 999.80	Moving average score: 181.72
+Ep 30	Last score: 999.80	Moving average score: 189.91
+Ep 31	Last score: 999.80	Moving average score: 198.00
+Ep 32	Last score: 999.80	Moving average score: 206.02
+Ep 33	Last score: 999.80	Moving average score: 213.96
+Ep 34	Last score: 999.80	Moving average score: 221.82
+Ep 35	Last score: 999.80	Moving average score: 229.60
+Ep 36	Last score: 999.80	Moving average score: 237.30
+Ep 37	Last score: 999.80	Moving average score: 244.93
+Ep 38	Last score: 999.80	Moving average score: 252.47
+Ep 39	Last score: 999.80	Moving average score: 259.95
+Ep 40	Last score: 999.80	Moving average score: 267.35
+Ep 41	Last score: 999.80	Moving average score: 274.67
+Ep 42	Last score: 999.80	Moving average score: 281.92
+Ep 43	Last score: 999.80	Moving average score: 289.10
+Ep 44	Last score: 999.80	Moving average score: 296.21
+Ep 45	Last score: 999.80	Moving average score: 303.24
+Ep 46	Last score: 999.80	Moving average score: 310.21
+Ep 10	Last score: 959.65	Moving average score: 9.60
+Ep 11	Last score: 999.80	Moving average score: 19.50
+Ep 12	Last score: 999.80	Moving average score: 29.30
+Ep 13	Last score: 999.80	Moving average score: 39.01
+Ep 14	Last score: 999.80	Moving average score: 48.61
+Ep 15	Last score: 999.80	Moving average score: 58.13

@@ -1,48 +1,108 @@
+
 import gym
-import numpy as np
+import cv2
+class Env():
+    """
+    Environment wrapper for CarRacing 
+    """
 
-
-class Environment():
-    def __init__(self):
+    def __init__(self, args):
         self.env = gym.make('CarRacing-v0')
-        self.stackNumber = 4
-        self.rewardThresh = self.env.spec.reward_threshold
+        self.args = args
+        self.env.seed(args.seed)
+        self.reward_threshold = self.env.spec.reward_threshold
 
     def reset(self):
-        self.dead = False
         self.counter = 0
-        frame = self.rgb2gray(self.env.reset())
+        self.av_r = self.reward_memory()
 
-        self.currentFrameStack = [frame]*self.stackNumber
-        self.currentFrameStacknp = np.array(self.currentFrameStack)
-        return self.currentFrameStacknp
+        self.die = False
+        img_rgb = self.env.reset()
+        processedImage = self.preprocess(img_rgb)
+        self.stack = [processedImage] * self.args.img_stack  # four frames for decision
+        return np.array(self.stack)
+    def checkDeath(self, img_rgb):
+        gray = self.preprocess(img_rgb)
+        temp = gray[73:93, 44:51]
+        # cv2.imshow('car', temp)
+        # print(temp.mean())
+        if temp.mean() < 100:
+            return True
+        return False
+    def step(self, action, steps):
+        total_reward = 0
+        for i in range(self.args.action_repeat):
+            img_rgb, reward, envDeath, _ = self.env.step(action)
 
-    def step(self, action):
+            # dont penalize "die state", but not too much
+            # print(reward)
+            if reward < 0:
+                reward /= 10
+            else:
+                reward *= 2
+            if envDeath:
+                reward += 100
+            # green penalty
+            # if np.mean(img_rgb[:, :, 1]) > 185.0:
+            #     reward -= 0.05
 
-        #removed loop to repeat actions for n steps
+            #penalty for steering too jerkily
+            # reward -= abs(action[0])
+            
+            if steps + i > 2000000:
+                customDeath = True
+            else:
+                customDeath = False
+            # if no reward recently, end the episode
+            # customDeath = True if self.av_r(reward) <= -0.1 else False
+            total_reward += reward
+            # done = False
+            if self.checkDeath(img_rgb):
+                total_reward -= 100
+                break
 
-        frame, reward, dead, _ = self.env.step(action)
-        if dead: #remove penalty from dead state
-            reward += 100
-        
-        if np.mean(frame[:,:,1]) > 185.0:
-            reward -= 0.05 #penalty if the person is in green tracks
-        
+            if customDeath:
+                # print("Deadddd ")
+                break
 
-        self.currentFrameStack.pop(0)
-        self.currentFrameStack.append(self.rgb2gray(frame))
-        self.currentFrameStacknp = np.array(self.currentFrameStack)
-
-        
-        return self.currentFrameStacknp, reward, dead
-        
-
+        death = customDeath or self.checkDeath(img_rgb)
+        img_gray = self.preprocess(img_rgb)
+        cv2.imshow('img', cv2.resize(img_gray, (300, 300)))
+        self.stack.pop(0)
+        self.stack.append(img_gray)
+        # print(len(self.stack))
+        assert len(self.stack) == self.args.img_stack
+        return np.array(self.stack), total_reward, death
 
     def render(self, *arg):
         self.env.render(*arg)
 
-    def rgb2gray(self, rgb, norm=True):
-        gray = np.dot(rgb[..., :], [0.299, 0.587, 0.114])
-        if norm:
-            gray = gray / 128. - 1.
+    @staticmethod
+    def preprocess(rgb, norm=True):
+        # rgb image -> gray [0, 1]
+        # gray = np.dot(rgb[..., :], [0.299, 0.587, 0.114])
+        # if norm:
+        #     gray = gray / 128. - 1.
+
+        gray = cv2.cvtColor(rgb, cv2.COLOR_BGR2GRAY)
+        ret, gray = cv2.threshold(gray,127,255,cv2.THRESH_BINARY_INV)
+        # print(gray.shape, type(gray), gray.dtype)
+        # cv2.imshow('cut', )
+        gray = cv2.resize(gray[0:83, 0:95], (96, 96))
         return gray
+
+    @staticmethod
+    def reward_memory():
+        # record reward for last 100 steps
+        count = 0
+        length = 100
+        history = np.zeros(length)
+
+        def memory(reward):
+            nonlocal count
+            history[count] = reward
+            count = (count + 1) % length
+            return np.mean(history)
+
+        return memory
+

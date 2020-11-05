@@ -1,63 +1,44 @@
 import torch.nn as nn
 
-class NeuralNet(nn.Module): #actor critic network 
+class Net(nn.Module):
+    """
+    Actor-Critic Network for PPO
+    """
 
-    def __init__(self, stackNumber = 4):
+    def __init__(self, args):
+        super(Net, self).__init__()
+        self.cnn_base = nn.Sequential(  # input shape (4, 96, 96)
+            nn.Conv2d(args.img_stack, 8, kernel_size=4, stride=2),
+            nn.ReLU(),  # activation
+            nn.Conv2d(8, 16, kernel_size=3, stride=2),  # (8, 47, 47)
+            nn.ReLU(),  # activation
+            nn.Conv2d(16, 32, kernel_size=3, stride=2),  # (16, 23, 23)
+            nn.ReLU(),  # activation
+            nn.Conv2d(32, 64, kernel_size=3, stride=2),  # (32, 11, 11)
+            nn.ReLU(),  # activation
+            nn.Conv2d(64, 128, kernel_size=3, stride=1),  # (64, 5, 5)
+            nn.ReLU(),  # activation
+            nn.Conv2d(128, 256, kernel_size=3, stride=1),  # (128, 3, 3)
+            nn.ReLU(),  # activation
+        )  # output shape (256, 1, 1)
+        self.v = nn.Sequential(nn.Linear(256, 100), nn.ReLU(), nn.Linear(100, 1))
+        self.fc = nn.Sequential(nn.Linear(256, 100), nn.ReLU())
+        self.alpha_head = nn.Sequential(nn.Linear(100, 3), nn.Softplus())
+        self.beta_head = nn.Sequential(nn.Linear(100, 3), nn.Softplus())
+        self.apply(self._weights_init)
 
-        super(NeuralNet, self).__init__()
+    @staticmethod
+    def _weights_init(m):
+        if isinstance(m, nn.Conv2d):
+            nn.init.xavier_uniform_(m.weight, gain=nn.init.calculate_gain('relu'))
+            nn.init.constant_(m.bias, 0.1)
 
-        self.baseNetwork = nn.Sequential(
-            nn.Conv2d(stackNumber, 8, kernel_size = 4, stride= 2), # stacked frames as input
-            nn.ReLU(),
-            nn.Conv2d(8, 16, kernel_size = 3, stride = 2),
-            nn.ReLU(),
-            nn.Conv2d(16, 32, kernel_size = 3, stride = 2),
-            nn.ReLU(),
-            nn.Conv2d(32, 64, kernel_size = 3, stride = 2),
-            nn.ReLU(),
-            nn.Conv2d(64, 128, kernel_size = 3, stride = 2),
-            nn.ReLU(),
-            nn.Conv2d(128, 256, kernel_size = 3, stride = 2),
-            nn.ReLU(),
-        ) #this outputs a (256, 1, 1) tensor
+    def forward(self, x):
+        x = self.cnn_base(x)
+        x = x.view(-1, 256)
+        v = self.v(x)
+        x = self.fc(x)
+        alpha = self.alpha_head(x) + 1
+        beta = self.beta_head(x) + 1
 
-
-        self.valueNetwork = nn.Sequential(
-            nn.Linear(256, 100),
-            nn.ReLU(),
-            nn.Linear(100, 1)
-        )
-
-        self.fc = nn.Sequential(
-            nn.Linear(256, 100),
-            nn.ReLU(),
-        )
-
-        self.alphaNetwork  = nn.Sequential(
-            nn.Linear(100, 3),
-            nn.Softplus(),
-        )
-
-        self.betaNetwork = nn.Sequential(
-            nn.Linear(100, 3),
-            nn.Softplus(),
-        )
-    
-        self.apply(self.initializeWeights)
-
-    def initializeWeights(self, module):
-
-        if isinstance(module, nn.Conv2d):
-            nn.init.xavier_uniform_(module.weight, gain = nn.init.calculate_gain('relu')) #initialize weights
-            nn.init.constant_(module.bias, 0.1) #set bias to 0.1 constant
-        
-    def forward(self, input):
-
-        out = self.baseNetwork(input)
-        out = out.view(-1, 256).double() #resize inputs for next outputs
-
-        value = self.valueNetwork(out).double()
-        alpha = self.alphaNetwork(out).double() + 1
-        beta = self.alphaNetwork(out).double() + 1
-
-        return (alpha, beta), value
+        return (alpha, beta), v
