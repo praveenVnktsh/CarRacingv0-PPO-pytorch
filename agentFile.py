@@ -21,13 +21,13 @@ class Agent():
         transition = np.dtype([('s', np.float64, (args.img_stack, 96, 96)), ('a', np.float64, (3,)), ('a_logp', np.float64),
                     ('r', np.float64), ('s_', np.float64, (args.img_stack, 96, 96))])
 
-
+        self.args = args
         self.training_step = 0
-        self.net = Net().double().to(device)
+        self.net = Net(args).double().to(device)
         self.device = device
         if episode != 0:
             print("LOADING FROM EPISODE", episode)
-            self.net.load_state_dict(torch.load('param/nobraking/ppo_net_params-' + str(episode) + '.pkl'))
+            self.net.load_state_dict(torch.load('model/episode-' + str(episode) + '.pkl'))
         self.buffer = np.empty(self.buffer_capacity, dtype=transition)
         self.counter = 0
 
@@ -49,7 +49,7 @@ class Agent():
         print('-----------------------------------------')
         print("SAVING AT EPISODE", episode)
         print('-----------------------------------------')
-        torch.save(self.net.state_dict(), 'param/nobraking/ppo_net_params-' + str(episode) +  '.pkl')
+        torch.save(self.net.state_dict(), 'model/episode-' + str(episode) +  '.pkl')
 
         
 
@@ -70,7 +70,7 @@ class Agent():
             old_a_logp = torch.tensor(self.buffer['a_logp'], dtype=torch.double).to(self.device).view(-1, 1)
 
             with torch.no_grad():
-                target_v = r + args.gamma * self.net(s_)[1]
+                target_v = r + self.args.gamma * self.net(s_)[1]
                 advantage = target_v - self.net(s)[1]
                 # adv = (adv - adv.mean()) / (adv.std() + 1e-8)
 
@@ -92,4 +92,3 @@ class Agent():
                     loss.backward()
                     # nn.utils.clip_grad_norm_(self.net.parameters(), self.max_grad_norm)
                     self.optimizer.step()
-            print("WEIGHTS UPDATED")

@@ -1,6 +1,7 @@
 
 import gym
 import cv2
+import numpy as np
 class Env():
     """
     Environment wrapper for CarRacing 
@@ -31,46 +32,20 @@ class Env():
         return False
     def step(self, action, steps):
         total_reward = 0
+        death = False
         for i in range(self.args.action_repeat):
             img_rgb, reward, envDeath, _ = self.env.step(action)
 
-            # dont penalize "die state", but not too much
-            # print(reward)
-            if reward < 0:
-                reward /= 10
-            else:
-                reward *= 2
-            if envDeath:
-                reward += 100
-            # green penalty
-            # if np.mean(img_rgb[:, :, 1]) > 185.0:
-            #     reward -= 0.05
-
-            #penalty for steering too jerkily
-            # reward -= abs(action[0])
             
-            if steps + i > 2000000:
-                customDeath = True
-            else:
-                customDeath = False
-            # if no reward recently, end the episode
-            # customDeath = True if self.av_r(reward) <= -0.1 else False
             total_reward += reward
-            # done = False
-            if self.checkDeath(img_rgb):
-                total_reward -= 100
-                break
+            if envDeath:
+                death = True
+            
 
-            if customDeath:
-                # print("Deadddd ")
-                break
-
-        death = customDeath or self.checkDeath(img_rgb)
         img_gray = self.preprocess(img_rgb)
         cv2.imshow('img', cv2.resize(img_gray, (300, 300)))
         self.stack.pop(0)
         self.stack.append(img_gray)
-        # print(len(self.stack))
         assert len(self.stack) == self.args.img_stack
         return np.array(self.stack), total_reward, death
 

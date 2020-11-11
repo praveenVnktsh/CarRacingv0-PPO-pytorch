@@ -62,7 +62,7 @@ if __name__ == "__main__":
     
     # beginPlot()
     
-    i_ep_old = 0
+    i_ep_old = 230
     test = False
 
     scores = [0]
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     
 
     while i_ep_old != 100000 - 1:
-        agent = Agent(i_ep_old)
+        agent = Agent(i_ep_old, args, device)
         env = Env(args)
         state = env.reset()
         try:
@@ -83,13 +83,10 @@ if __name__ == "__main__":
                 score = 0
                 state = env.reset()
                 die = False
-                # while not die:
                 for t in range(10000):
                     if t%200 - 1 == 0:
                         gc.collect()
                     action, a_logp = agent.select_action(state)
-                    # state_, reward, done, die = env.step(env.action_space.sample() * np.array([2., 1., 1.]) + np.array([-1., 0., 0.]))
-                    # state_, reward, done = env.step([0.0, 1.0, 0.5 ], t)
                     state_, reward, done = env.step(action* np.array([-2., 1.0, 0.5]) + np.array([1., 0, 0.]), t)
                     # if test:
                     env.render()
@@ -121,7 +118,7 @@ if __name__ == "__main__":
                 #     break
         except Exception as e:
             i_ep_old = i_ep_new
-            i_ep_old = (i_ep_old//args.log_interval)*args.log_interval
+            i_ep_old = ((i_ep_old-1)//args.log_interval)*args.log_interval
             logger('ENV RESTARTING')
             env.env.close()
             del agent
