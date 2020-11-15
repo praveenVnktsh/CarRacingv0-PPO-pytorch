@@ -49,8 +49,8 @@ class Env():
                 finalReward -= 10
             elif steps > self.args.deathThreshold:
                 reason = 'Timesteps exceeded'
-            elif (envDeath and steps < int(1000/self.args.action_repeat) ):
-                reason = 'Exceeded boundary'
+            # elif (envDeath and steps < int(1000/self.args.action_repeat) ):
+            #     reason = 'Environment Signal'
             else:
                 death = False
             if death:
@@ -80,7 +80,7 @@ class Env():
         return False
    
     def storeRewards(self, reward):
-        if len(self.rewards) > self.deathByGreeneryThreshold:
+        if len(self.rewards) > self.args.deathByGreeneryThreshold:
             self.rewards.pop(0)
         self.rewards.append(reward)
         

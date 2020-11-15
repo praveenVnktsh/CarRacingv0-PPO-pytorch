@@ -26,7 +26,7 @@ experiment.log_parameters(hyper_params)
 
 if __name__ == "__main__":
     
-    checkpoint = 0
+    checkpoint = 272
     with experiment.train():
         agent = Agent(checkpoint, args, device)
         env = Env(args)
@@ -38,7 +38,7 @@ if __name__ == "__main__":
                 if t%200 - 1 == 0:
                     gc.collect()
                 action, a_logp = agent.select_action(prevState)
-                curState, reward, done, reason = env.step(action* np.array([-2., 1.0, 0.5]) + np.array([1., 0, 0.]), t)
+                curState, reward, done, reason = env.step(action* np.array([-2., 0.0, 0.5]) + np.array([1., 0.5, 0.]), t)
                 env.render()
 
                 agent.update((prevState, action, a_logp, reward, curState), episodeIndex)
@@ -47,6 +47,7 @@ if __name__ == "__main__":
                 prevState = curState
 
                 if done:
+                    print('--------------------')
                     print("Dead at score = ", round(score, 2), ' || Timesteps = ', t, ' || Reason = ', reason)
                     break
             gc.collect()
