@@ -1,0 +1,9 @@
+curState, reward, done, reason = env.step(action* np.array([-2., 0.0, 0.5]) + np.array([1., 0.5, 0.]), t)
+
+if self.checkExtendedPenalty():
+    reason = 'Greenery'
+    finalReward -= 10
+elif steps > self.args.deathThreshold:
+    reason = 'Timesteps exceeded'
+else:
+    death = False
