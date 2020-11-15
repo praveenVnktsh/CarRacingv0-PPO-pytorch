@@ -75,7 +75,6 @@ class Agent():
             with torch.no_grad():
                 target_v = r + self.args.gamma * self.net(s_)[1]
                 advantage = target_v - self.net(s)[1]
-                # adv = (adv - adv.mean()) / (adv.std() + 1e-8)
 
             for _ in range(self.ppo_epoch):
                 for index in BatchSampler(SubsetRandomSampler(range(self.buffer_capacity)), self.batch_size, False):

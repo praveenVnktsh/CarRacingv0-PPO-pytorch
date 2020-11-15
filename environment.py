@@ -35,7 +35,7 @@ class Env():
         finalReward = 0
         death = False
         rgbState = None
-
+        reason = 'NULL'
         for i in range(self.args.action_repeat):
             rgbState, reward, envDeath, _ = self.env.step(action)
             
@@ -43,7 +43,16 @@ class Env():
                 finalReward -= 0.05
             finalReward += reward
             self.storeRewards(reward)
-            death = self.checkExtendedPenalty() or steps > self.args.deathThreshold or (envDeath and steps < int(1000/self.args.action_repeat) )
+            death = True
+            if self.checkExtendedPenalty():
+                reason = 'Greenery'
+                finalReward -= 10
+            elif steps > self.args.deathThreshold:
+                reason = 'Timesteps exceeded'
+            elif (envDeath and steps < int(1000/self.args.action_repeat) ):
+                reason = 'Exceeded boundary'
+            else:
+                death = False
             if death:
                 break
             
@@ -53,7 +62,7 @@ class Env():
         self.stack.pop(0)
         self.stack.append(img_gray)
         assert len(self.stack) == self.args.img_stack
-        return np.array(self.stack), finalReward, death
+        return np.array(self.stack), finalReward, death, reason
 
     def render(self, *arg):
         self.env.render(*arg)
@@ -67,12 +76,11 @@ class Env():
     def checkExtendedPenalty(self):
         temp = np.array(self.rewards)
         if temp[temp < 0].size == temp.size:
-            print('Death by greenery')
             return True
         return False
    
     def storeRewards(self, reward):
-        if len(self.rewards) > 50:
+        if len(self.rewards) > self.deathByGreeneryThreshold:
             self.rewards.pop(0)
         self.rewards.append(reward)
         
