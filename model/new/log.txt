@@ -1,41 +1,5 @@
-Ep 45	Last score: -82.74	Moving average score: -0.83
-Ep 46	Last score: -145.17	Moving average score: -2.27
-Ep 47	Last score: -57.59	Moving average score: -2.82
-Ep 48	Last score: -141.73	Moving average score: -4.21
-Ep 49	Last score: -39.49	Moving average score: -4.57
-Ep 50	Last score: -56.99	Moving average score: -5.09
-Ep 51	Last score: -72.85	Moving average score: -5.77
-Ep 52	Last score: -82.23	Moving average score: -6.53
-Ep 53	Last score: -54.21	Moving average score: -7.01
-Ep 54	Last score: -149.98	Moving average score: -8.44
-Ep 55	Last score: -58.77	Moving average score: -8.94
 ENV RESTARTING
-Ep 55	Last score: -162.60	Moving average score: -10.48
-Ep 56	Last score: -16.69	Moving average score: -10.54
-Ep 57	Last score: -75.37	Moving average score: -11.19
-Ep 58	Last score: -75.71	Moving average score: -11.83
-Ep 59	Last score: -53.37	Moving average score: -12.25
-Ep 60	Last score: -66.61	Moving average score: -12.79
-Ep 61	Last score: -77.47	Moving average score: -13.44
-Ep 62	Last score: -106.83	Moving average score: -14.37
-Ep 63	Last score: -82.90	Moving average score: -15.06
-Ep 64	Last score: -129.82	Moving average score: -16.21
-Ep 65	Last score: -89.70	Moving average score: -16.94
 ENV RESTARTING
-Ep 65	Last score: -176.47	Moving average score: -18.54
-Ep 66	Last score: -75.28	Moving average score: -19.10
-Ep 67	Last score: -74.97	Moving average score: -19.66
-Ep 68	Last score: -81.96	Moving average score: -20.29
-Ep 69	Last score: -65.30	Moving average score: -20.74
-Ep 70	Last score: -94.49	Moving average score: -21.47
-Ep 71	Last score: -88.96	Moving average score: -22.15
-Ep 72	Last score: -64.48	Moving average score: -22.57
-Ep 73	Last score: -52.61	Moving average score: -22.87
-Ep 74	Last score: -84.68	Moving average score: -23.49
-Ep 75	Last score: 58.92	Moving average score: -22.67
 ENV RESTARTING
-Ep 75	Last score: -68.63	Moving average score: -23.13
-Ep 76	Last score: -49.97	Moving average score: -23.39
-Ep 45	Last score: 50.37	Moving average score: 0.50
-Ep 46	Last score: 47.49	Moving average score: 0.97
-Ep 47	Last score: 40.01	Moving average score: 1.36
+ENV RESTARTING
+ENV RESTARTING

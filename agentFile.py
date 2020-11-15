@@ -11,10 +11,8 @@ class Agent():
     """
     Agent for training
     """
-    max_grad_norm = 0.5
-    clip_param = 0.1  # epsilon in clipped loss
-    ppo_epoch = 10
-    buffer_capacity, batch_size = 1000, 32
+    # max_grad_norm = 0.5
+    
 
     def __init__(self, episode, args, device):
 
@@ -22,6 +20,10 @@ class Agent():
                     ('r', np.float64), ('s_', np.float64, (args.img_stack, 96, 96))])
 
         self.args = args
+        self.clip_param = args.clip_param
+        self.ppo_epoch = args.ppo_epoch
+        self.buffer_capacity = args.buffer_capacity
+        self.batch_size = args.batch_size
         self.training_step = 0
         self.net = Net(args).double().to(device)
         self.device = device
@@ -30,7 +32,7 @@ class Agent():
             self.net.load_state_dict(torch.load(self.args.saveLocation + 'episode-' + str(episode) + '.pkl'))
         self.buffer = np.empty(self.buffer_capacity, dtype=transition)
         self.counter = 0
-
+        self.lastSavedEpisode = 0
         self.optimizer = optim.Adam(self.net.parameters(), lr=1e-3)
 
     def select_action(self, state):
@@ -46,6 +48,7 @@ class Agent():
         return action, a_logp
 
     def save_param(self, episode ):
+        self.lastSavedEpisode = episode
         print('-----------------------------------------')
         print("SAVING AT EPISODE", episode)
         print('-----------------------------------------')
@@ -53,7 +56,7 @@ class Agent():
 
         
 
-    def update(self, transition):
+    def update(self, transition, episodeIndex):
         self.buffer[self.counter] = transition
         self.counter += 1
         # print('COUNTER = ', self.counter)
@@ -92,3 +95,4 @@ class Agent():
                     loss.backward()
                     # nn.utils.clip_grad_norm_(self.net.parameters(), self.max_grad_norm)
                     self.optimizer.step()
+            self.save_param(episodeIndex)

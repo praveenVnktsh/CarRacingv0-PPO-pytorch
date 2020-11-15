@@ -67,6 +67,7 @@ class Env():
     def checkExtendedPenalty(self):
         temp = np.array(self.rewards)
         if temp[temp < 0].size == temp.size:
+            print('Death by greenery')
             return True
         return False
    

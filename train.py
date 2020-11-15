@@ -1,4 +1,5 @@
 import argparse
+from comet_ml import Experiment
 import gc
 from time import sleep
 import numpy as np
@@ -6,27 +7,32 @@ from agentFile import Agent
 from environment import Env
 import matplotlib.pyplot as plt
 import torch
+import os
 
 
 parser = argparse.ArgumentParser(description='Train a PPO agent for the CarRacing-v0')
 parser.add_argument('--gamma', type=float, default=0.99, metavar='G', help='discount factor (default: 0.99)')
-parser.add_argument('--action-repeat', type=int, default=1, metavar='N', help='repeat action in N frames (default: 8)')
+parser.add_argument('--action-repeat', type=int, default=2, metavar='N', help='repeat action in N frames (default: 8)')
 parser.add_argument('--img-stack', type=int, default=4, metavar='N', help='stack N image in a state (default: 4)')
 parser.add_argument('--seed', type=int, default=0, metavar='N', help='random seed (default: 0)')
-parser.add_argument('--render', action='store_true', help='render the environment')
 parser.add_argument('--log-interval', type=int, default=5, metavar='N', help='interval between training status logs (default: 10)')
-parser.add_argument('--deathThreshold', type=int, default=2000, metavar='N', help='interval between training status logs (default: 10)')
-parser.add_argument('--saveLocation', type=str, default='model/new/', metavar='N', help='interval between training status logs (default: 10)')
+parser.add_argument('--deathThreshold', type=int, default=2000, metavar='N', help='Threshold before death')
+parser.add_argument('--saveLocation', type=str, default='model/clip0x2/', metavar='N', help='interval between training status logs (default: 10)')
+parser.add_argument('--clip-param', type=float, default=0.2, metavar='N', help='random seed (default: 0)')
+parser.add_argument('--ppo-epoch', type=int, default=10, metavar='N', help='')
+parser.add_argument('--buffer-capacity', type=int, default=1000, metavar='N', help='')
+parser.add_argument('--batch-size', type=int, default=128, metavar='N', help='')
+
 args = parser.parse_args()
+
+os.makedirs(args.saveLocation, exist_ok = True)
+
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 torch.manual_seed(args.seed)
 if use_cuda:
     torch.cuda.manual_seed(args.seed)
-
-
-
 
 
 def logger(string, fileName = args.saveLocation + 'log.txt' ):
@@ -36,98 +42,75 @@ def logger(string, fileName = args.saveLocation + 'log.txt' ):
     file.close()
 
 
-def beginPlot():
-    global fig, ax
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    plt.ion()
-    
-    fig.show()
-    fig.canvas.draw()
-
-def plot(data):
-    global ax, fig
-    ax.clear()
-    ax.plot(data)
-    ax.set_ylim(bottom=0)
-    fig.canvas.draw()
-    # `start_event_loop` is required for console, not jupyter notebooks.
-    # Don't use `plt.pause` because it steals focus and makes it hard
-    # to stop the app.
-    fig.canvas.start_event_loop(0.001)
-
-
 
 
 if __name__ == "__main__":
+
+
+
+    experiment = Experiment(project_name="CarRacing", api_key='P4Y69RtjtY1e0R20FCgvxtbi0' )
+    hyper_params = {
+        "gamma": args.gamma,
+        "action-repeat": args.action_repeat,
+        "img-stack":args.img_stack,
+        "seed": args.seed,
+        "clip_param" : args.clip_param,
+        "ppo_epoch" : args.ppo_epoch,
+        "buffer_capacity" : args.buffer_capacity,
+        "batch_size" : args.batch_size,
+        "log-interval": args.log_interval,
+        "deathThreshold": args.deathThreshold,
+        "saveLocation": args.saveLocation
+    }
+    experiment.log_parameters(hyper_params)
     
-    # beginPlot()
-    
-    i_ep_old = 45
+    oldEpisodeIndex = 0
 
-
-
-    if i_ep_old == 0:
+    if oldEpisodeIndex == 0:
         f = open(args.saveLocation + 'log.txt','w')
         f.close()
-    test = False
-
-    scores = [0]
-    runningscores = [0]
-    i_ep_new = 0
-    running_score = 0
     
 
-    while i_ep_old != 100000 - 1:
-        agent = Agent(i_ep_old, args, device)
-        env = Env(args)
-        state = env.reset()
-        try:
-            
-            for i_ep in range(i_ep_old, 100000):
+    newEpisodeIndex = 0
+    
+    with experiment.train():
+        while oldEpisodeIndex != 100000 - 1:
+            agent = Agent(oldEpisodeIndex, args, device)
+            env = Env(args)
+            prevState = env.reset()
+            try:
                 
-                i_ep_new = i_ep
-                score = 0
-                state = env.reset()
-                die = False
-                for t in range(10000):
-                    if t%200 - 1 == 0:
-                        gc.collect()
-                    action, a_logp = agent.select_action(state)
-                    state_, reward, done = env.step(action* np.array([-2., 1.0, 0.5]) + np.array([1., 0, 0.]), t)
-                    # if test:
-                    env.render()
-                    # sleep(0.03)
-                    if not test:
-                        agent.update((state, action, a_logp, reward, state_))
+                for episodeIndex in range(oldEpisodeIndex, 100000):
+                    
+                    newEpisodeIndex = episodeIndex
+                    score = 0
+                    prevState = env.reset()
+                    for t in range(10000):
+                        if t%200 - 1 == 0:
+                            gc.collect()
+                        action, a_logp = agent.select_action(prevState)
+                        curState, reward, done = env.step(action* np.array([-2., 1.0, 0.5]) + np.array([1., 0, 0.]), t)
+                        env.render()
 
-                    score += reward
-                    state = state_
+                        agent.update((prevState, action, a_logp, reward, curState), episodeIndex)
 
-                    if (done or die) and not test:
-                        print("DEAD at score = ", score, t)
-                        break
-                running_score = running_score * 0.99 + score * 0.01
-                gc.collect()
-                scores.append(score)
-                runningscores.append(runningscores)
-                
-                # plot(scores)
+                        score += reward
+                        prevState = curState
 
-                print('Ep {}\tLast score: {:.2f}\tMoving average score: {:.2f} \n'.format(i_ep, score, running_score))
-                logger('Ep {}\tLast score: {:.2f}\tMoving average score: {:.2f}'.format(i_ep, score, running_score))
+                        if done:
+                            print("DEAD at score = ", score, t)
+                            break
+                    gc.collect()
+                    experiment.log_metric("scores", score , step=episodeIndex)
+
+                    print('Ep {}\tLast score: {:.2f}'.format(episodeIndex, score))
+                    # logger('Ep {}\tLast score: {:.2f} {:.2f}'.format(episodeIndex, score))
 
 
-                if i_ep % args.log_interval == 0 and not test:
-                    agent.save_param(i_ep)
-                # if running_score > env.reward_threshold:
-                #     print("Solved! Running reward is now {} and the last episode runs to {}!\n".format(running_score, score))
-                #     break
-        except Exception as e:
-            i_ep_old = i_ep_new
-            i_ep_old = ((i_ep_old-1)//args.log_interval)*args.log_interval
-            logger('ENV RESTARTING')
-            env.env.close()
-            del agent
-            del env
-            print(e)
+            except Exception as e:
+                oldEpisodeIndex = agent.lastSavedEpisode
+                logger('ENV RESTARTING')
+                env.env.close()
+                del agent
+                del env
+                print(e)
