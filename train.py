@@ -10,12 +10,13 @@ import torch
 
 parser = argparse.ArgumentParser(description='Train a PPO agent for the CarRacing-v0')
 parser.add_argument('--gamma', type=float, default=0.99, metavar='G', help='discount factor (default: 0.99)')
-parser.add_argument('--action-repeat', type=int, default=8, metavar='N', help='repeat action in N frames (default: 8)')
+parser.add_argument('--action-repeat', type=int, default=1, metavar='N', help='repeat action in N frames (default: 8)')
 parser.add_argument('--img-stack', type=int, default=4, metavar='N', help='stack N image in a state (default: 4)')
 parser.add_argument('--seed', type=int, default=0, metavar='N', help='random seed (default: 0)')
 parser.add_argument('--render', action='store_true', help='render the environment')
-parser.add_argument(
-    '--log-interval', type=int, default=10, metavar='N', help='interval between training status logs (default: 10)')
+parser.add_argument('--log-interval', type=int, default=5, metavar='N', help='interval between training status logs (default: 10)')
+parser.add_argument('--deathThreshold', type=int, default=2000, metavar='N', help='interval between training status logs (default: 10)')
+parser.add_argument('--saveLocation', type=str, default='model/new/', metavar='N', help='interval between training status logs (default: 10)')
 args = parser.parse_args()
 
 use_cuda = torch.cuda.is_available()
@@ -28,7 +29,7 @@ if use_cuda:
 
 
 
-def logger(string, fileName = 'log.txt' ):
+def logger(string, fileName = args.saveLocation + 'log.txt' ):
     file = open(fileName, 'a')
     file.write(string)
     file.write('\n')
@@ -62,7 +63,13 @@ if __name__ == "__main__":
     
     # beginPlot()
     
-    i_ep_old = 230
+    i_ep_old = 45
+
+
+
+    if i_ep_old == 0:
+        f = open(args.saveLocation + 'log.txt','w')
+        f.close()
     test = False
 
     scores = [0]

@@ -14,7 +14,7 @@ class Agent():
     max_grad_norm = 0.5
     clip_param = 0.1  # epsilon in clipped loss
     ppo_epoch = 10
-    buffer_capacity, batch_size = 250, 32
+    buffer_capacity, batch_size = 1000, 32
 
     def __init__(self, episode, args, device):
 
@@ -27,7 +27,7 @@ class Agent():
         self.device = device
         if episode != 0:
             print("LOADING FROM EPISODE", episode)
-            self.net.load_state_dict(torch.load('model/episode-' + str(episode) + '.pkl'))
+            self.net.load_state_dict(torch.load(self.args.saveLocation + 'episode-' + str(episode) + '.pkl'))
         self.buffer = np.empty(self.buffer_capacity, dtype=transition)
         self.counter = 0
 
@@ -49,7 +49,7 @@ class Agent():
         print('-----------------------------------------')
         print("SAVING AT EPISODE", episode)
         print('-----------------------------------------')
-        torch.save(self.net.state_dict(), 'model/episode-' + str(episode) +  '.pkl')
+        torch.save(self.net.state_dict(), self.args.saveLocation + 'episode-' + str(episode) +  '.pkl')
 
         
 
