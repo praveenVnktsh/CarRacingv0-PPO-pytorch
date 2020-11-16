@@ -66,8 +66,7 @@ class Env():
 
         distances, _ = self.preprocess(rgbState)
         
-        for i in range(5):
-            self.stack.pop(0)
+        self.stack = self.stack[5:]
         
         self.stack += distances
 

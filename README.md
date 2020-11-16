@@ -4,7 +4,11 @@ Solving CarRacing-v0 with actor critic network and proximal policy optimization.
 
 ### Preprocessing
 
-Convert 96x96 into distances in front of the car!
+- Take 96x96 image, remove the base where the scores are shown
+- Project 5 lasers from the top of the car, see where they meet the roads, and get the distances.
+- Stack previous n distances of 5, and feed into a FCN, A2C network with PPO.
+    - Hidden layer size is 128
+
 
 
 ### Notes

@@ -35,7 +35,7 @@ class Args():
     
     def getParamsDict(self):
         ret = {key:value for key, value in self.__dict__.items() if not key.startswith('__') and not callable(key)}
-        print(ret)
+        print('\nHYPERPARAMETERS = ', ret)
         return ret
     
     def actionTransformation(self, action):
