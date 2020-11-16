@@ -11,7 +11,7 @@ from config import configure
 
 if __name__ == "__main__":
     args, use_cuda,  device = configure()
-    checkpoint = 557
+    checkpoint = 316
     agent = Agent(checkpoint, args, device)
     env = Env(args)
 
@@ -21,13 +21,16 @@ if __name__ == "__main__":
         die = False
         for t in range(10000):
             action, a_logp = agent.select_action(prevState)
-            curState, reward, done = env.step(action* np.array([-2., 1.0, 0.5]) + np.array([1., 0, 0.]), t)
+            curState, reward, done, reason = env.step(action* np.array([-2., 0.0, 0.5]) + np.array([1., 0.5, 0.]), t)
             env.render()
+
+
             score += reward
             prevState = curState
 
-            if (done or die):
-                print("DEAD at score = ", score, t)
+            if done:
+                print('--------------------')
+                print("Dead at score = ", round(score, 2), ' || Timesteps = ', t, ' || Reason = ', reason)
                 break
         print('Ep {}\tLast score: {:.2f}\n----------------\n'.format(episodeIndex, score))
 

@@ -1,3 +1,4 @@
+from config import Args
 from neuralnet import Net
 import torch
 import numpy as np
@@ -14,15 +15,16 @@ class Agent():
     # max_grad_norm = 0.5
     
 
-    def __init__(self, episode, args, device):
+    def __init__(self, episode, args:Args, device):
 
-        transition = np.dtype([('s', np.float64, (args.img_stack, 96, 96)), ('a', np.float64, (3,)), ('a_logp', np.float64),
-                    ('r', np.float64), ('s_', np.float64, (args.img_stack, 96, 96))])
+        transition = np.dtype([('s', np.float64, (args.valueStackSize*args.numberOfLasers, )), ('a', np.float64, (3,)), ('a_logp', np.float64),
+                    ('r', np.float64), ('s_', np.float64, (args.valueStackSize*args.numberOfLasers, ))])
 
         self.args = args
         self.clip_param = args.clip_param
         self.ppo_epoch = args.ppo_epoch
         self.buffer_capacity = args.buffer_capacity
+        self.prevSaveIndex = episode
         self.batch_size = args.batch_size
         self.training_step = 0
         self.net = Net(args).double().to(device)
@@ -61,7 +63,7 @@ class Agent():
         self.counter += 1
         # print('COUNTER = ', self.counter)
         if self.counter == self.buffer_capacity:
-            print("UPDATING WEIGHTS at reward = ", transition[3])
+            print("UPDATING WEIGHTS AT EPISODE = ", episodeIndex)
             self.counter = 0
             self.training_step += 1
 
@@ -94,4 +96,6 @@ class Agent():
                     loss.backward()
                     # nn.utils.clip_grad_norm_(self.net.parameters(), self.max_grad_norm)
                     self.optimizer.step()
-            self.save_param(episodeIndex)
+            if episodeIndex - self.prevSaveIndex > 10:
+                self.save_param(episodeIndex)
+                self.prevSaveIndex = episodeIndex

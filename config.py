@@ -5,21 +5,24 @@ import os
 class Args():
 
     def __init__(self):
-        clipper = 0.1
+        clipper = 0.4
         trial = 1
-        saveloc = 'model/trial_' + str(trial) + '_clip_' + str(clipper) + '/'
+        saveloc = 'model/distances/train_' + str(trial) + '_clip_' + str(clipper) + '/'
 
         self.gamma = 0.99
         self.action_repeat = 2
-        self.img_stack = 4
+        self.valueStackSize = 4
         self.seed = 0
+
+        self.numberOfLasers = 5
         self.deathThreshold = 2000
         self.clip_param = clipper
         self.saveLocation = saveloc
         self.ppo_epoch = 10
-        self.buffer_capacity = 1000
+        self.buffer_capacity = 500
         self.batch_size = 128
         self.deathByGreeneryThreshold = 50
+        self.maxDistance = 100
         
 
 def configure():

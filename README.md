@@ -4,7 +4,7 @@ Solving CarRacing-v0 with actor critic network and proximal policy optimization.
 
 ### Preprocessing
 
-Remove the base part that shows the score, and rescale to 96x96.
+Convert 96x96 into distances in front of the car!
 
 
 ### Notes
