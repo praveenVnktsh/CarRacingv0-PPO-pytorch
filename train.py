@@ -30,7 +30,7 @@ if __name__ == "__main__":
     checkpoint = 295
     with experiment.train():
         agent = Agent(checkpoint, args, device)
-        env = Env(args)
+        env = Env(args, agent)
         prevState = env.reset()
         for episodeIndex in range(checkpoint, 100000):
             score = 0

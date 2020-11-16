@@ -1,12 +1,14 @@
 
+from agentFile import Agent
 import gym
 import cv2
 import numpy as np
 from config import Args
 
 class Env():
-    def __init__(self, args:Args):
+    def __init__(self, args:Args, agent: Agent):
         self.env = gym.make('CarRacing-v0')
+        self.agent = agent
         self.args = args
         self.env.seed(args.seed)
         self.previousRewards = []
@@ -24,7 +26,8 @@ class Env():
         return np.array(self.stack)
     def checkGreen(self, img_rgb):
         _, gray = self.preprocess(img_rgb)
-        temp = gray[73:93, 44:51]
+        temp = gray[66:78, 44:52]
+        cv2.imshow('temp', cv2.resize(temp, (300, 300)))
         if temp.mean() < 100:
             return True
         return False
@@ -78,42 +81,44 @@ class Env():
         
         gray = cv2.cvtColor(rgb, cv2.COLOR_BGR2GRAY)
         _, gray = cv2.threshold(gray,127,255,cv2.THRESH_BINARY_INV)
-        gray = cv2.resize(gray[0:83, 0:95], (96, 96))
-        temp =  cv2.resize(gray.copy()[0:83, 0:95], (96, 96))
+        gray = gray[0:83, 0:95]
+        temp =  gray.copy()[0:83, 0:95] 
         temprgb = rgb.copy()[0:83, 0:95]
         
 
         x = 48
-        y = 78
+        y = 73
 
         locs = [None, None, None, None, None]
-        for i in range(0, 96, 1):
+        for i in range(0, 95):
             if None not in locs:
                 break
-            chk = (min(max(0, y-i), 95), min(max(x-i, 0), 95) )
+            chk = (min(max(0, y-i), 82), min(max(x-i, 0), 94) )
             if locs[0] == None and self.checkPixelGreen(temp[chk]):
                 locs[0] = chk
                 cv2.circle(temprgb, (x - i + 1, y - i), 1, (255, 0, 0), 1) #leftmost
 
-            chk = (min(max(0, y-i), 95), max(min(x+i, 95), 0) )
+            chk = (min(max(0, y-i), 82), max(min(x+i, 94), 0) )
             if locs[4] == None and self.checkPixelGreen(temp[chk]): # rightmost
                 locs[4] = chk
                 cv2.circle(temprgb, (x + i - 1, y - i), 1, (255, 0, 0), 1)
             
-            chk = (min(max(0, y-i), 95), x)
+            chk = (min(max(0, y-i), 82), x)
             if locs[2] == None and self.checkPixelGreen(temp[chk]): #middle
                 locs[2] = chk
                 cv2.circle(temprgb, (x, y - i), 1, (255, 0, 0), 1)
 
-            chk = (min(max(0, y-i), 95), max(min(x + i//2, 95), 0))
+            chk = (min(max(0, y-i), 82), max(min(x + i//2, 94), 0))
             if locs[3] == None and self.checkPixelGreen(temp[chk]): #midright
                 locs[3] = chk
                 cv2.circle(temprgb, (x + i//2 - 1, y - i), 1, (255, 0, 0), 1)
 
-            chk = (min(max(0, y-i), 95), min(max(x - i//2, 0), 95))
+            chk = (min(max(0, y-i), 82), min(max(x - i//2, 0), 94))
             if locs[1] == None and self.checkPixelGreen(temp[chk]): #midleft
                 locs[1] = chk
                 cv2.circle(temprgb, (x - i//2 + 1, y - i), 1, (255, 0, 0), 1)
+        
+        
         distances = []
         for i in range(len(locs)):
             if locs[i] == None:
@@ -126,6 +131,7 @@ class Env():
 
         temprgb =  cv2.resize(temprgb, (0,0), fx = 2, fy = 2)
         cv2.imshow('img', cv2.resize(temprgb, (300, 300)))
+        # cv2.waitKey(200)
         return distances, gray
 
     def checkExtendedPenalty(self):
@@ -134,6 +140,7 @@ class Env():
             return True
         return False
    
+
     def storeRewards(self, reward):
         if len(self.rewards) > self.args.deathByGreeneryThreshold:
             self.rewards.pop(0)

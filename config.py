@@ -21,7 +21,7 @@ class Args():
         self.ppo_epoch = 10
         self.buffer_capacity = 500
         self.batch_size = 128
-        self.deathByGreeneryThreshold = 50
+        self.deathByGreeneryThreshold = 35
         self.maxDistance = 100
         
 

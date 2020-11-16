@@ -11,9 +11,9 @@ from config import configure
 
 if __name__ == "__main__":
     args, use_cuda,  device = configure()
-    checkpoint = 316
+    checkpoint = 295
     agent = Agent(checkpoint, args, device)
-    env = Env(args)
+    env = Env(args, agent)
 
     for episodeIndex in range(checkpoint, 100000):
         score = 0

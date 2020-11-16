@@ -8,7 +8,7 @@ class Net(nn.Module):
 
     def __init__(self, args:Args):
         super(Net, self).__init__()
-        self.cnn_base = nn.Sequential(  # input shape (4, 96, 96)
+        self.cnn_base = nn.Sequential( 
             nn.Linear(args.valueStackSize*5, 128),
             nn.ReLU(),  # activation
         )  # output shape (256, 1, 1)
