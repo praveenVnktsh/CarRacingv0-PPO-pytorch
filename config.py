@@ -5,7 +5,7 @@ import os
 class Args():
 
     def __init__(self):
-        clipper = 0.4
+        clipper = 0.1
         trial = 1
         saveloc = 'model/trial_' + str(trial) + '_clip_' + str(clipper) + '/'
 

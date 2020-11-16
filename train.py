@@ -26,7 +26,7 @@ experiment.log_parameters(hyper_params)
 
 if __name__ == "__main__":
     
-    checkpoint = 272
+    checkpoint = 320
     with experiment.train():
         agent = Agent(checkpoint, args, device)
         env = Env(args)
