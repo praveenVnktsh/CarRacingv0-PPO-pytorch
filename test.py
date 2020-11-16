@@ -10,18 +10,18 @@ from config import configure
 
 
 if __name__ == "__main__":
-    args, use_cuda,  device = configure()
-    checkpoint = 295
-    agent = Agent(checkpoint, args, device)
-    env = Env(args, agent)
+    configs, use_cuda,  device = configure()
+    
+    agent = Agent(configs.checkpoint, configs, device)
+    env = Env(configs)
 
-    for episodeIndex in range(checkpoint, 100000):
+    for episodeIndex in range(configs.checkpoint, 100000):
         score = 0
         prevState = env.reset()
         die = False
         for t in range(10000):
             action, a_logp = agent.select_action(prevState)
-            curState, reward, done, reason = env.step(action* np.array([-2., 0.0, 0.5]) + np.array([1., 0.5, 0.]), t)
+            curState, reward, done, reason = env.step(configs.actionTransformation(action), t, agent)
             env.render()
 
 

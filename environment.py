@@ -6,11 +6,10 @@ import numpy as np
 from config import Args
 
 class Env():
-    def __init__(self, args:Args, agent: Agent):
+    def __init__(self, configs:Args):
         self.env = gym.make('CarRacing-v0')
-        self.agent = agent
-        self.args = args
-        self.env.seed(args.seed)
+        self.configs = configs
+        self.env.seed(configs.seed)
         self.previousRewards = []
         self.rewardThresh = self.env.spec.reward_threshold
         self.rewards = []
@@ -21,37 +20,44 @@ class Env():
         self.die = False
         img_rgb = self.env.reset()
         distances, _ = self.preprocess(img_rgb)
-        self.stack = distances * self.args.valueStackSize  # four frames for decision
+        self.stack = distances * self.configs.valueStackSize  # four frames for decision
         # print('ENVIRONMENT RESET -- Stack size = ',self.stack )
         return np.array(self.stack)
+   
     def checkGreen(self, img_rgb):
         _, gray = self.preprocess(img_rgb)
         temp = gray[66:78, 44:52]
-        cv2.imshow('temp', cv2.resize(temp, (300, 300)))
         if temp.mean() < 100:
             return True
         return False
 
-    def step(self, action, steps):
+    def step(self, action, steps, agent:Agent):
         finalReward = 0
         death = False
         rgbState = None
         reason = 'NULL'
-        for i in range(self.args.action_repeat):
-            rgbState, reward, envDeath, _ = self.env.step(action)
-            
+        for i in range(self.configs.action_repeat):
+            rgbState, reward, envDeath, _ = self.env.step(self.configs.actionTransformation(action))
             if self.checkGreen(rgbState):
                 finalReward -= 0.05
+            
+            jerkPenalty = np.linalg.norm(np.array(agent.buffer['a'][agent.counter-1]) - np.array(agent.buffer['a'][agent.counter-2]))
+            
+            finalReward -= jerkPenalty
+
+
+        
             finalReward += reward
             self.storeRewards(reward)
+        
+        
+        
             death = True
             if self.checkExtendedPenalty():
                 reason = 'Greenery'
                 finalReward -= 10
-            elif steps > self.args.deathThreshold:
+            elif steps > self.configs.deathThreshold:
                 reason = 'Timesteps exceeded'
-            # elif (envDeath and steps < int(1000/self.args.action_repeat) ):
-            #     reason = 'Environment Signal'
             else:
                 death = False
             if death:
@@ -65,7 +71,7 @@ class Env():
         
         self.stack += distances
 
-        assert len(self.stack) == self.args.valueStackSize * 5
+        assert len(self.stack) == self.configs.valueStackSize * 5
         return np.array(self.stack), finalReward, death, reason
 
     def render(self, *arg):
@@ -122,16 +128,15 @@ class Env():
         distances = []
         for i in range(len(locs)):
             if locs[i] == None:
-                locs[i] = (self.args.maxDistance, self.args.maxDistance)
+                locs[i] = (self.configs.maxDistance, self.configs.maxDistance)
             dist = round(np.linalg.norm(np.array(locs[i]) - np.array((y, x))), 2)
             if dist == 0:
-                dist = self.args.maxDistance
+                dist = self.configs.maxDistance
             distances.append(dist)
 
 
         temprgb =  cv2.resize(temprgb, (0,0), fx = 2, fy = 2)
         cv2.imshow('img', cv2.resize(temprgb, (300, 300)))
-        # cv2.waitKey(200)
         return distances, gray
 
     def checkExtendedPenalty(self):
@@ -142,7 +147,7 @@ class Env():
    
 
     def storeRewards(self, reward):
-        if len(self.rewards) > self.args.deathByGreeneryThreshold:
+        if len(self.rewards) > self.configs.deathByGreeneryThreshold:
             self.rewards.pop(0)
         self.rewards.append(reward)
         

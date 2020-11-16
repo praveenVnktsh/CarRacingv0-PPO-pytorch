@@ -12,8 +12,6 @@ class Agent():
     """
     Agent for training
     """
-    # max_grad_norm = 0.5
-    
 
     def __init__(self, episode, args:Args, device):
 
@@ -61,7 +59,6 @@ class Agent():
     def update(self, transition, episodeIndex):
         self.buffer[self.counter] = transition
         self.counter += 1
-        # print('COUNTER = ', self.counter)
         if self.counter == self.buffer_capacity:
             print("UPDATING WEIGHTS AT EPISODE = ", episodeIndex)
             self.counter = 0
