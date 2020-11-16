@@ -19,3 +19,15 @@ Remove the base part that shows the score, and rescale to 96x96.
     - Threshold for greenery death can be decayed
     - Penalty for jerky steering should be introduced later into training
     - Clipping parameter can be decayed.
+
+
+- A memory leak problem with the OpenAI Gym was resolved by following these steps:
+
+> https://github.com/openai/gym/blob/38a1f630dc9815a567aaf299ae5844c8f8b9a6fa/gym/envs/box2d/car_racing.py#L527
+> 
+> There is memory leaking in car_racing.py code.
+> 
+> pyglet.graphics.vertex_list() function makes the memory almost double,
+> 
+> And it can be fixed with `vl.delete()` under this line
+> https://github.com/openai/gym/blob/38a1f630dc9815a567aaf299ae5844c8f8b9a6fa/gym/envs/box2d/car_racing.py#L530
