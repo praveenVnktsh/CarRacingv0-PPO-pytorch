@@ -29,7 +29,7 @@ if __name__ == "__main__":
                 action, a_logp = agent.select_action(prevState)
                 
                 curState, reward, dead, reasonForDeath = env.step(action, t, agent)
-                env.render()
+                
                 if not configs.test:
                     agent.update((prevState, action, a_logp, reward, curState), episodeIndex)
                 score += reward

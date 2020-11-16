@@ -36,12 +36,15 @@ class Env():
         death = False
         rgbState = None
         reason = 'NULL'
+        print(self.configs.actionTransformation(action))
         for i in range(self.configs.action_repeat):
             rgbState, reward, envDeath, _ = self.env.step(self.configs.actionTransformation(action))
+            
+            self.env.render()
             if self.checkGreen(rgbState):
                 finalReward -= 0.05
             
-            jerkPenalty = np.linalg.norm(np.array(agent.buffer['a'][agent.counter-1]) - np.array(agent.buffer['a'][agent.counter-2]))
+            jerkPenalty = 10*np.linalg.norm(np.array(agent.buffer['a'][agent.counter-1]) - np.array(agent.buffer['a'][agent.counter-2]))
             
             finalReward -= jerkPenalty
 
@@ -136,6 +139,7 @@ class Env():
 
         temprgb =  cv2.resize(temprgb, (0,0), fx = 2, fy = 2)
         cv2.imshow('img', cv2.resize(temprgb, (300, 300)))
+        # cv2.waitKey(200)
         return distances, gray
 
     def checkExtendedPenalty(self):

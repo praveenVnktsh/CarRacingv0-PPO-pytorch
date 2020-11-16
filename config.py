@@ -6,11 +6,12 @@ import numpy as np
 class Args():
 
     def __init__(self):
-        self.checkpoint = 373
+        self.checkpoint = 82
+        trial = 3
         self.test = False
 
         self.gamma = 0.99
-        self.action_repeat = 1
+        self.action_repeat = 3
         self.valueStackSize = 8
         self.seed = 0
 
@@ -24,10 +25,10 @@ class Args():
         self.deathByGreeneryThreshold = 35
         self.maxDistance = 100
 
-        self.actionMultiplier = np.array([-2., 1.0, 1.0])
-        self.actionBias = np.array([1., 0., 0.])
+        self.actionMultiplier = np.array([2., 1.0, 1.0])
+        self.actionBias = np.array([-1., 0., 0.0])
 
-        trial = 2
+        
         saveloc = 'model/distances/train_' + str(trial) + '_valueStackSize_' + str(self.valueStackSize) + '/'
 
 
