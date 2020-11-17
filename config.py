@@ -6,13 +6,15 @@ import numpy as np
 class Args():
 
     def __init__(self):
-        self.checkpoint = 82
-        trial = 3
+        self.checkpoint = 622
+        trial = 5
         self.test = False
 
+
         self.gamma = 0.99
-        self.action_repeat = 3
+        self.action_repeat = 4
         self.valueStackSize = 8
+        self.actionStack = 0
         self.seed = 0
 
         self.numberOfLasers = 5
@@ -26,13 +28,21 @@ class Args():
         self.maxDistance = 100
 
         self.actionMultiplier = np.array([2., 1.0, 1.0])
-        self.actionBias = np.array([-1., 0., 0.0])
+        self.actionBias = np.array([-1.0, 0.0, 0.0])
 
         
-        saveloc = 'model/distances/train_' + str(trial) + '_valueStackSize_' + str(self.valueStackSize) + '/'
+        saveloc = 'model/distances/train_' + str(trial) + '/'
 
 
         self.saveLocation = saveloc
+
+        os.makedirs(self.saveLocation, exist_ok = True)
+        f = open(saveloc + 'params.json','w')
+        f.write(str(self.getParamsDict()))
+        f.close()
+
+
+
     
     def getParamsDict(self):
         ret = {key:value for key, value in self.__dict__.items() if not key.startswith('__') and not callable(key)}
@@ -46,7 +56,7 @@ class Args():
 def configure():
     
     args = Args()
-    os.makedirs(args.saveLocation, exist_ok = True)
+    
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda" if use_cuda else "cpu")
     torch.manual_seed(args.seed)

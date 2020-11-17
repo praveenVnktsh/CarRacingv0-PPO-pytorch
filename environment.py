@@ -20,8 +20,9 @@ class Env():
         self.die = False
         img_rgb = self.env.reset()
         distances, _ = self.preprocess(img_rgb)
-        self.stack = distances * self.configs.valueStackSize  # four frames for decision
+        self.stack = distances * self.configs.valueStackSize  + [0., 0., 0.]*self.configs.actionStack # four frames for decision
         # print('ENVIRONMENT RESET -- Stack size = ',self.stack )
+        assert len(self.stack) == self.configs.valueStackSize * self.configs.numberOfLasers  + 3*self.configs.actionStack
         return np.array(self.stack)
    
     def checkGreen(self, img_rgb):
@@ -36,7 +37,6 @@ class Env():
         death = False
         rgbState = None
         reason = 'NULL'
-        print(self.configs.actionTransformation(action))
         for i in range(self.configs.action_repeat):
             rgbState, reward, envDeath, _ = self.env.step(self.configs.actionTransformation(action))
             
@@ -45,8 +45,8 @@ class Env():
                 finalReward -= 0.05
             
             jerkPenalty = 10*np.linalg.norm(np.array(agent.buffer['a'][agent.counter-1]) - np.array(agent.buffer['a'][agent.counter-2]))
-            
             finalReward -= jerkPenalty
+            finalReward -= action[2]
 
 
         
@@ -69,11 +69,11 @@ class Env():
 
         distances, _ = self.preprocess(rgbState)
         
-        self.stack = self.stack[5:]
-        
+        self.stack = self.stack[self.configs.numberOfLasers:self.configs.valueStackSize * self.configs.numberOfLasers]
         self.stack += distances
+        # self.stack += action.tolist()
 
-        assert len(self.stack) == self.configs.valueStackSize * 5
+        assert len(self.stack) == self.configs.valueStackSize * self.configs.numberOfLasers  + 3*self.configs.actionStack
         return np.array(self.stack), finalReward, death, reason
 
     def render(self, *arg):

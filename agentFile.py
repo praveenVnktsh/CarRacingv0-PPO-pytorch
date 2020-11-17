@@ -15,8 +15,8 @@ class Agent():
 
     def __init__(self, episode, args:Args, device):
 
-        transition = np.dtype([('s', np.float64, (args.valueStackSize*args.numberOfLasers, )), ('a', np.float64, (3,)), ('a_logp', np.float64),
-                    ('r', np.float64), ('s_', np.float64, (args.valueStackSize*args.numberOfLasers, ))])
+        transition = np.dtype([('s', np.float64, (args.valueStackSize*args.numberOfLasers + 3*args.actionStack, )), ('a', np.float64, (3,)), ('a_logp', np.float64),
+                    ('r', np.float64), ('s_', np.float64, (args.valueStackSize*args.numberOfLasers + 3*args.actionStack, ))])
 
         self.args = args
         self.clip_param = args.clip_param

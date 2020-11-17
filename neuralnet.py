@@ -9,7 +9,7 @@ class Net(nn.Module):
     def __init__(self, args:Args):
         super(Net, self).__init__()
         self.cnn_base = nn.Sequential( 
-            nn.Linear(args.valueStackSize*5, 128),
+            nn.Linear(args.valueStackSize*args.numberOfLasers + 3*args.actionStack, 128), #stacking previous distances along with action
             nn.ReLU(),  # activation
         )  # output shape (256, 1, 1)
         self.v = nn.Sequential(nn.Linear(128, 100), nn.ReLU(), nn.Linear(100, 1))

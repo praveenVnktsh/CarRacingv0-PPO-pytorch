@@ -35,3 +35,12 @@ Solving CarRacing-v0 with actor critic network and proximal policy optimization.
 > 
 > And it can be fixed with `vl.delete()` under this line
 > https://github.com/openai/gym/blob/38a1f630dc9815a567aaf299ae5844c8f8b9a6fa/gym/envs/box2d/car_racing.py#L530
+
+
+- Another bug with rotating camera fixed:
+Commment out these lines around line 422
+```python
+vel = self.car.hull.linearVelocity
+if np.linalg.norm(vel) > 0.5:
+    angle = math.atan2(vel[0], vel[1])
+```
