@@ -14,11 +14,14 @@ This repository is made such that the neural network and the methods can be modi
 ![final.gif](final.gif)
 
 
-## Neural network
+## Neural network for `main`
 
 ![final.gif](images/nn.png)
 
-![final.gif](images/training.png)
+For the distances model, the neural network used is a simple feedforward network with a very low number of neurons that outputs the 3 required commands.
+
+## Training
+![final.gif](images/training.jpeg)
 
 ### Preprocessing
 
