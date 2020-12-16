@@ -1,6 +1,24 @@
-# CarRacing-v0 with Actor Critic Network + PPO
+# CarRacingv0 with PPO 
 
-Solving CarRacing-v0 with actor critic network and proximal policy optimization.
+There are 2 branches on this repository:
+- `distances` : Converts the pixel space into a distance space for reduction in the size of the NN.
+- `main`: Applies simple preprocessing on the pixel space before feeding it into the NN.
+
+
+This repository is made such that the neural network and the methods can be modified very easily by just changing the configurations in the `config.py` file. It uses the `CometML` interface in order to track learning and different experiments.
+
+
+
+## Demo
+
+![final.gif](final.gif)
+
+
+## Neural network
+
+![final.gif](images/nn.png)
+
+![final.gif](images/training.png)
 
 ### Preprocessing
 

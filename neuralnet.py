@@ -1,5 +1,5 @@
 import torch.nn as nn
-from config import Args
+from config import Args, configure
 
 class Net(nn.Module):
     """
@@ -33,3 +33,7 @@ class Net(nn.Module):
         beta = self.beta_head(x) + 1
 
         return (alpha, beta), v
+
+if __name__ == "__main__":
+    
+    print(Net(configure()[0]))
